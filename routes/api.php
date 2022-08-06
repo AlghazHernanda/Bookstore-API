@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 //http://127.0.0.1:8000/api/test (dipostman)
-Route::get('/test', function (Request $request) {
-    return 'Authenticate';
-});
+// Route::get('/test', function (Request $request) {
+//     return 'Authenticate';
+// });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
