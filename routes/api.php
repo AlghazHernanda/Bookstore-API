@@ -19,6 +19,16 @@ use Illuminate\Support\Facades\Route;
 //     return 'Authenticate';
 // });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//prefix v1 = api versi 1
+Route::middleware('auth:api')->prefix('v1')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    // Route::apiResource('/authors', AuthorsController::class);
+    // Route::apiResource('/books', BooksController::class);
 });
+
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
