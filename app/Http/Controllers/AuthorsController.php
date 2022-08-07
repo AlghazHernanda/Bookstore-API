@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Http\Requests\StoreAuthorRequest;
-use App\Http\Requests\UpdateAuthorRequest;
+use Illuminate\Http\Request;
 use App\Http\Resources\AuthorResouce;
-use Illuminate\Support\Facades\Request;
+
 
 class AuthorsController extends Controller
 {
@@ -84,13 +84,18 @@ class AuthorsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateAuthorRequest  $request
+     *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAuthorRequest $request, Author $author)
+    public function update(Request $request, Author $author)
     {
-        //
+        $author->update([
+            'name' => $request->input('name')
+        ]);
+
+        return new AuthorResouce($author);
     }
 
     /**
@@ -101,6 +106,7 @@ class AuthorsController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
+        return response(null, 204);
     }
 }
