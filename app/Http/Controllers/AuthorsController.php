@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
 use App\Http\Resources\AuthorResouce;
+use Illuminate\Support\Facades\Request;
 
 class AuthorsController extends Controller
 {
@@ -16,7 +17,7 @@ class AuthorsController extends Controller
      */
     public function index()
     {
-        //
+        return AuthorResouce::collection(Author::all());
     }
 
     /**
@@ -35,9 +36,15 @@ class AuthorsController extends Controller
      * @param  \App\Http\Requests\StoreAuthorRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAuthorRequest $request)
+    public function store(Request $request)
     {
-        //
+        $faker = \Faker\Factory::create(1);
+
+        $author = Author::create([
+            'name' => $faker->name
+        ]);
+
+        return new AuthorResouce($author);
     }
 
     /**
