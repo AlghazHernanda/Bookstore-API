@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Http\Requests\StoreAuthorRequest;
 use Illuminate\Http\Request;
 use App\Http\Resources\AuthorResouce;
+use App\Http\Requests\AuthorsRequest;
 
 
 class AuthorsController extends Controller
@@ -36,7 +37,7 @@ class AuthorsController extends Controller
      * @param  \App\Http\Requests\StoreAuthorRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AuthorsRequest $request)
     {
         $faker = \Faker\Factory::create(1);
 
@@ -89,8 +90,10 @@ class AuthorsController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Author $author)
+    public function update(AuthorsRequest $request, Author $author)
     {
+        //autorrequest untuk validasi data
+
         $author->update([
             'name' => $request->input('name')
         ]);
