@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Http\Requests\StoreAuthorRequest;
 use Illuminate\Http\Request;
-use App\Http\Resources\AuthorResouce;
 use App\Http\Requests\AuthorsRequest;
-
+use App\Http\Resources\AuthorResource;
 
 class AuthorsController extends Controller
 {
@@ -18,7 +17,7 @@ class AuthorsController extends Controller
      */
     public function index()
     {
-        return AuthorResouce::collection(Author::all());
+        return AuthorResource::collection(Author::all());
     }
 
     /**
@@ -45,7 +44,7 @@ class AuthorsController extends Controller
             'name' => $faker->name
         ]);
 
-        return new AuthorResouce($author);
+        return new AuthorResource($author);
     }
 
     /**
@@ -68,7 +67,7 @@ class AuthorsController extends Controller
         //     ]
         // ]);
 
-        return new AuthorResouce($author);
+        return new AuthorResource($author);
     }
 
     /**
@@ -98,7 +97,7 @@ class AuthorsController extends Controller
             'name' => $request->input('name')
         ]);
 
-        return new AuthorResouce($author);
+        return new AuthorResource($author);
     }
 
     /**
